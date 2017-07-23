@@ -315,15 +315,15 @@ export default class Presentation extends React.Component {
         </Slide>
         <Slide {...slideProps }>
           <Heading textColor="primary" size={3}>Contribute to react-iot</Heading>
-          <Heading lineHeight={4} textColor="primary" size={6}>https://github.com/vnovick/react-iot</Heading>
+          <Heading lineHeight={4} textColor="primary" size={6}><Link textColor="primary" href="https://github.com/vnovick/react-iot">https://github.com/vnovick/react-iot</Link></Heading>
           <Heading lineHeight={3} textColor="primary" size={6}>Contact me</Heading>
-          <Text textColor="primary" style={{ fontSize: "2rem" }} size={6}>vladjs.com</Text>
-          <Text textColor="primary" style={{ fontSize: "2rem" }} size={6}>@VladimirNovick</Text>
+          <Text><Link textColor="primary" style={{ fontSize: "2rem" }} size={6} href="vladjs.com">vladjs.com</Link></Text>
+          <Text><Link textColor="primary" style={{ fontSize: "2rem" }} size={6} href="@VladimirNovick">@VladimirNovick</Link></Text>
         </Slide>
         <Slide {...slideProps }>
           <Heading size={3} lineHeight={3} textColor="primary">Thank you</Heading>
           <Text textColor="primary" lineHeight={2}>presentation repo:</Text>
-          <Text textColor="primary" style={{ fontSize: "1.2rem" }}>http://github.com/vnovick/react-iot-presentation</Text>
+          <Link textColor="primary" style={{ fontSize: "1.2rem" }} href="https://github.com/vnovick/js-israel-nodebots">https://github.com/vnovick/js-israel-nodebots</Link>
         </Slide>
       </Deck>
     );
