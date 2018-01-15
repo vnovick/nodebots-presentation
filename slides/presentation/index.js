@@ -3,8 +3,6 @@ import React from "react";
 
 // Import Spectacle Core tags
 import {
-  BlockQuote,
-  Cite,
   Image,
   Deck,
   Heading,
@@ -12,15 +10,12 @@ import {
   ListItem,
   Appear,
   List,
-  Code,
-  Quote,
   Slide,
   Text
 } from "spectacle";
 
 import CodeSlide from "spectacle-code-slide";
 
-import DroneControl from "./components/droneControl";
 import WebCam from "./components/webCam";
 // Import image preloader util
 import preloader from "spectacle/lib/utils/preloader";
@@ -48,7 +43,13 @@ const images = {
   support: require("../assets/support.png"),
   forget: require("../assets/forget.jpg"),
   ai: require("../assets/artificialintelligence.jpg"),
-  agenda: require("../assets/agenda.jpg")
+  agenda: require("../assets/agenda.jpg"),
+  smarthome: require("../assets/smarthome.png"),
+  iotarchitecture: require("../assets/iotarchitecture.png"),
+  arduinowelcome: require("../assets/arduinowelcome.png"),
+  joystick: require("../assets/joystick.png"),
+  bme280: require("../assets/bme280.png"),
+  tessel2: require("../assets/tessel2.png")
 };
 
 preloader(images);
@@ -79,21 +80,29 @@ export default class Presentation extends React.Component {
         <Slide {...slideProps } bgImage={images.backgroundStart}>
           <Heading size={1} textColor="primary" caps>JavaScript Robotics</Heading>
         </Slide>
-        <Slide {...slideProps } bgImage={images.forget} bgDarken={0}>
-          <Heading size={4} textColor="red" lineHeight={2} caps>Don't forget to record the screen and setup camera</Heading>
-        </Slide>
         <Slide {...slideProps } bgImage={images.ai}>
           <Heading size={3} textColor="primary" lineHeight={2} caps>Vladimir Novick</Heading>
-          <Heading size={4} textColor="primary" caps>Web Architect & Consultant</Heading>
+          <Heading size={4} textColor="primary" caps>Software Architect & Consultant</Heading>
           <Image src={images.codevalueLogo} style={{ paddingTop: "2rem" }} />
         </Slide>
         <Slide {...slideProps } bgImage={images.agenda}>
           <Heading size={3} textColor="primary" lineHeight={2}>Agenda</Heading>
           <List>
-            <Appear><ListItem>JavaScript Robotics with NodeBots</ListItem></Appear>
             <Appear><ListItem>Inernet of things</ListItem></Appear>
+            <Appear><ListItem>JavaScript Robotics with NodeBots</ListItem></Appear>
             <Appear><ListItem>Have fun with cool demos</ListItem></Appear>
           </List>
+        </Slide>
+        <Slide {...slideProps }>
+          <Heading size={5} textColor="primary" caps>Internet of Things</Heading>
+          <Image src={images.iot} />
+        </Slide>
+        <Slide {...slideProps }>
+          <Image src={images.smarthome} />
+        </Slide>
+        <Slide {...slideProps }>
+          <Heading size={5} textColor="primary" caps>IoT Architecture</Heading>
+          <Image src={images.iotarchitecture} />
         </Slide>
         <Slide {...slideProps }>
           <Heading size={5} textColor="primary" caps>Robots... how it started</Heading>
@@ -102,10 +111,6 @@ export default class Presentation extends React.Component {
         <Slide {...slideProps }>
           <Heading size={5} textColor="primary" caps>Later in the future...</Heading>
           <Image style={{ width: "50vw" }} src={images.terminator} />
-        </Slide>
-        <Slide {...slideProps }>
-          <Heading size={5} textColor="primary" caps>Internet of Things</Heading>
-          <Image src={images.iot} />
         </Slide>
         <Slide {...slideProps }>
           <Heading size={1} textColor="primary" lineHeight={2} caps>JavaScript is everywhere</Heading>
@@ -164,6 +169,15 @@ export default class Presentation extends React.Component {
           ]}
         />
         <Slide {...slideProps }>
+          <Image style={{ width: "50vw" }} src={images.arduinowelcome} />
+        </Slide>
+        <Slide {...slideProps }>
+          <Heading size={5} textColor="primary" caps>Tessel2</Heading>
+          <Link href="https://tessel.io/" target="_blank">
+           <Image style={{ width: "50vw" }} src={images.tessel2} />
+          </Link>
+        </Slide>
+        <Slide {...slideProps }>
           <Heading size={3} textColor="primary" caps>Connecting to the cloud</Heading>
           <WebCam />
         </Slide>
@@ -197,8 +211,14 @@ export default class Presentation extends React.Component {
           ranges={[
             { loc: [ 0, 4 ], title: "Raspberry Pi drone" },
             { loc: [ 4, 8 ] },
-            { loc: [ 8, 15 ] },
-            { loc: [ 15, 29 ] }
+            { loc: [ 9, 14 ] },
+            { loc: [ 14, 29 ] },
+            { loc: [ 29, 38 ] },
+            { loc: [ 39, 48 ] },
+            { loc: [ 49, 58 ] },
+            { loc: [ 60, 69 ] },
+            { loc: [ 70, 78 ] },
+            { loc: [ 78, 87 ] }
           ]}
         />
         <Slide {...slideProps }>
@@ -222,53 +242,6 @@ export default class Presentation extends React.Component {
             <Appear><ListItem>Fun</ListItem></Appear>
           </List>
         </Slide>
-        <Slide {...slideProps }>
-          <DroneControl />
-        </Slide>
-        <CodeSlide
-          style={{ fontSize: "1.5rem" }}
-          bgColor="secondary" textColor="primary" bgImage={images.background} bgDarken={.6}
-          transition={"slide"}
-          lang="js"
-          code={require("raw-loader!./code-samples/droneControl")}
-          ranges={[
-            { loc: [ 0, 10 ], title: "Client code walkthrough" },
-            { loc: [ 55, 59 ] },
-            { loc: [ 60, 67 ] },
-            { loc: [ 67, 72 ] },
-            { loc: [ 73, 78 ] },
-            { loc: [ 79, 85 ] },
-            { loc: [ 86, 94 ] },
-            { loc: [ 94, 101 ] },
-            { loc: [ 101, 107 ] },
-            { loc: [ 153, 159 ] }
-          ]}
-        />
-        <CodeSlide
-          style={{ fontSize: "1.5rem" }}
-          bgColor="secondary" textColor="primary" bgImage={images.background} bgDarken={.6}
-          transition={"slide"}
-          lang="js"
-          code={require("raw-loader!./code-samples/server")}
-          ranges={[
-            { loc: [ 0, 10 ], title: "Server code walkthrough" },
-            { loc: [ 13, 16 ] },
-            { loc: [ 16, 27 ] },
-            { loc: [ 29, 38 ] },
-            { loc: [ 38, 47 ] }
-          ]}
-        />
-        <Slide {...slideProps }>
-          <Heading size={3} textColor="primary" caps>Porting to device</Heading>
-          <List>
-            <Appear><ListItem>Server Code stays</ListItem></Appear>
-            <Appear><ListItem>Client Side Code changed to meet React IoT requirements</ListItem></Appear>
-            <Appear><ListItem>ssh to Raspberry pi and get the code from git</ListItem></Appear>
-            <Appear>
-              <Image src={images.backgroundFirstSlide} />
-            </Appear>
-          </List>
-        </Slide>
         <CodeSlide
           style={{ fontSize: "1.5rem" }}
           bgColor="secondary" textColor="primary" bgImage={images.background} bgDarken={.6}
@@ -276,15 +249,14 @@ export default class Presentation extends React.Component {
           lang="js"
           code={require("raw-loader!./code-samples/droneControlIoT")}
           ranges={[
-            { loc: [ 0, 10 ], title: "Client Code transformation" },
-            { loc: [ 11, 17 ] },
-            { loc: [ 19, 26 ] },
-            { loc: [ 26, 32 ] },
-            { loc: [ 54, 59 ] },
-            { loc: [ 60, 65 ] },
-            { loc: [ 103, 109 ] },
-            { loc: [ 112, 122 ] },
-            { loc: [ 123, 124 ] }
+            { loc: [ 0, 10 ], title: "Code walkthrough" },
+            { loc: [ 10, 20 ] },
+            { loc: [ 20, 27 ] },
+            { loc: [ 27, 42 ] },
+            { loc: [ 43, 48 ] },
+            { loc: [ 48, 53 ] },
+            { loc: [ 85, 97 ] },
+            { loc: [ 100, 105 ] }
           ]}
         />
         <Slide {...slideProps }>
@@ -299,13 +271,6 @@ export default class Presentation extends React.Component {
           </List>
         </Slide>
         <Slide {...slideProps }>
-          <Heading size={3} textColor="primary" caps>But what about React Hardware?</Heading>
-          <List>
-            <ListItem>Is an alternative to Johnny Five</ListItem>
-            <ListItem>Is based on firmdata</ListItem>
-          </List>
-        </Slide>
-        <Slide {...slideProps }>
           <Heading size={3} textColor="primary" caps>react-iot roadmap</Heading>
           <List>
             <Appear><ListItem>Implement all of Johnny Five components</ListItem></Appear>
@@ -317,13 +282,13 @@ export default class Presentation extends React.Component {
           <Heading textColor="primary" size={3}>Contribute to react-iot</Heading>
           <Heading lineHeight={4} textColor="primary" size={6}><Link textColor="primary" href="https://github.com/vnovick/react-iot">https://github.com/vnovick/react-iot</Link></Heading>
           <Heading lineHeight={3} textColor="primary" size={6}>Contact me</Heading>
-          <Text><Link textColor="primary" style={{ fontSize: "2rem" }} size={6} href="vladjs.com">vladjs.com</Link></Text>
+          <Text><Link textColor="primary" style={{ fontSize: "2rem" }} size={6} href="vladjs.com">vnovick.com</Link></Text>
           <Text><Link textColor="primary" style={{ fontSize: "2rem" }} size={6} href="@VladimirNovick">@VladimirNovick</Link></Text>
         </Slide>
         <Slide {...slideProps }>
           <Heading size={3} lineHeight={3} textColor="primary">Thank you</Heading>
           <Text textColor="primary" lineHeight={2}>presentation repo:</Text>
-          <Link textColor="primary" style={{ fontSize: "1.2rem" }} href="https://github.com/vnovick/js-israel-nodebots">https://github.com/vnovick/js-israel-nodebots</Link>
+          <Link textColor="primary" style={{ fontSize: "1.2rem" }} href="https://github.com/vnovick/nodebots-presentation">https://github.com/vnovick/nodebots-presentation</Link>
         </Slide>
       </Deck>
     );

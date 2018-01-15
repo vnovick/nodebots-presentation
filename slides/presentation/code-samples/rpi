@@ -1,3 +1,4 @@
+
 import Raspi from "raspi-io";
 import five from "johnny-five";
 import drone from "./drone";
@@ -8,19 +9,75 @@ const board = new five.Board({
 
 board.on("ready", function() {
   let inAir = false;
+
+  const led = new five.Led("P1-13");
+
   const takeOffOrLandButton = new five.Button({
     pin: "P1-15",
     isPullup: true
   });
 
+  const up = new five.Button({
+    pin: "P1-24",
+    isPullup: true
+  }).on("down", _ => move("up"));
+
+  const down = new five.Button({
+    pin: "P1-16",
+    isPullup: true
+  }).on("down", _ => move("down"));
+
+  const turnLeft = new five.Button({
+    pin: "P1-21",
+    isPullup: true
+  }).on("down", _ => turn("left"));
+
+  const turnRight = new five.Button({
+    pin: "P1-22",
+    isPullup: true
+  }).on("down", _ => turn("right"));
+
+  const forward = new five.Button({
+    pin: "P1-19",
+    isPullup: true
+  }).on("down", _ => move("forward"));
+
+  const backward = new five.Button({
+    pin: "P1-18",
+    isPullup: true
+  }).on("down", _ => move("backward"))
+
+  const left = new five.Button({
+    pin: "P1-11",
+    isPullup: true
+  }).on("down", _ => move("left"))
+
+  const right = new five.Button({
+    pin: "P1-23",
+    isPullup: true
+  }).on("down", _ => move("right"))
+
+
+  function move(direction){
+    drone.move({ direction });
+    console.log("drone moving", direction);
+  }
+
+  function turn(direction){
+    drone.turn({ direction});
+    console.log("drone turning", direction);
+  }
+
   takeOffOrLandButton.on("down", () => {
     console.log("Toggle in Air", inAir);
     if (!inAir) {
+      led.on();
       drone.takeoff().then(function() {
         console.log("did take off!");
         inAir = true;
         });
     } else {
+      led.off();
       drone.land().then(function(){
         console.log("landed");
         inAir = false;

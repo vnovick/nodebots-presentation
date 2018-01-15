@@ -22,7 +22,7 @@ board.on("ready", function() {
   lcd.useChar("check");
   lcd.useChar("heart");
 
-  lcd.clear().print("Hello JS Israel");
+  lcd.clear().print("Hi, JS Robots");
   lcd.cursor(1, 0);
 
   // Line 2: I <3 johnny-five
